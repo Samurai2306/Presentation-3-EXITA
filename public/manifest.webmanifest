@@ -1,0 +1,10 @@
+{
+  "name": "Я живой — демо",
+  "short_name": "Я живой",
+  "description": "Интерактивное демо phygital-экосистемы заботы",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f6faf7",
+  "theme_color": "#3fa76f",
+  "lang": "ru"
+}

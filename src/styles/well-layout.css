@@ -1,0 +1,1290 @@
+:root {
+  --well-phone-w: min(100vw - 1.25rem, 390px);
+  --well-phone-max-h: min(88dvh, 852px);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--well-bg);
+  color: var(--well-text);
+}
+
+.well-app {
+  min-height: 100dvh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.well-app--gate,
+.well-app--session {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.well-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 80% at 10% -10%, rgba(63, 167, 111, 0.12), transparent 50%),
+    radial-gradient(ellipse 90% 70% at 100% 10%, rgba(184, 227, 204, 0.45), transparent 45%),
+    linear-gradient(180deg, #f6faf7 0%, var(--well-bg) 55%, #e8f2ec 100%);
+}
+
+.well-bg__dots {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: radial-gradient(circle, #b8d4c4 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.well-top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.55rem 0.75rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--well-border);
+  box-shadow: var(--well-shadow-sm);
+}
+
+.well-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+  flex: 1 1 8rem;
+  font-weight: 800;
+  font-size: clamp(0.92rem, 3.5vw, 1.05rem);
+  color: var(--well-text);
+  letter-spacing: -0.02em;
+}
+
+.well-top-role-pill {
+  font-size: 0.65rem !important;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.well-main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 1rem 2.5rem;
+  box-sizing: border-box;
+}
+
+.well-scene {
+  animation: wellSceneEnter 0.2s ease;
+}
+
+@keyframes wellSceneEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .well-scene {
+    animation: none;
+  }
+}
+
+.well-title {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 800;
+  color: var(--well-text);
+  letter-spacing: -0.02em;
+}
+
+.well-lead {
+  margin: 0 0 1rem;
+  color: var(--well-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  font-weight: 600;
+  max-width: 65ch;
+}
+
+.well-grid-2 {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .well-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.well-note {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--well-muted);
+  margin-top: 0.85rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--well-radius-sm);
+  border-left: 4px solid var(--well-accent);
+  background: var(--well-primary-light);
+}
+
+/* Hub layout */
+.well-hub-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.well-hub-hero {
+  padding: 1rem 1.1rem 1.1rem;
+  border-radius: var(--well-radius-xl);
+}
+
+.well-hub-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.well-hub-hero__title {
+  margin-bottom: 0.35rem;
+}
+
+.well-hub-hero__lead {
+  margin-bottom: 0;
+}
+
+.well-hub-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.well-hub-pairs {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1100px) {
+  .well-hub-pairs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.well-hub-pair {
+  display: grid;
+  gap: 0.55rem 0.65rem;
+  align-items: stretch;
+}
+
+@media (min-width: 820px) {
+  .well-hub-pair {
+    grid-template-columns: minmax(220px, 270px) 14px minmax(0, 1fr);
+  }
+
+  .well-hub-pair__explainer {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .well-hub-pair .well-connector-v {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .well-hub-pair .well-connector-h {
+    grid-column: 1 / -1;
+    display: none;
+  }
+
+  .well-hub-pair__window {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 819px) {
+  .well-hub-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.well-hub-disclaimer {
+  margin-top: 0.25rem;
+}
+
+/* --- Mobile shell: compact header + bottom tabs --- */
+.well-app--session .well-top {
+  padding-top: calc(0.55rem + env(safe-area-inset-top, 0px));
+}
+
+.well-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.well-top-actions .well-key--sm {
+  white-space: nowrap;
+}
+
+.well-main--tabbed {
+  max-width: 560px;
+  padding-top: 0.75rem;
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+  /* Запас под нижнюю панель: две строки подписи + safe area */
+  padding-bottom: calc(6.25rem + env(safe-area-inset-bottom, 0px));
+}
+
+.well-more-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--well-radius-md);
+  border: 1px solid var(--well-border);
+  background: var(--well-primary-light);
+}
+
+.well-more-context__label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--well-primary-dark);
+  line-height: 1.25;
+  min-width: 0;
+  flex: 1 1 12rem;
+}
+
+.well-tabbar {
+  position: fixed;
+  z-index: 48;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 0.12rem;
+  padding: 0.35rem max(0.35rem, env(safe-area-inset-left, 0px)) calc(0.4rem + env(safe-area-inset-bottom, 0px))
+    max(0.35rem, env(safe-area-inset-right, 0px));
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--well-border);
+  box-shadow: 0 -6px 24px rgba(28, 41, 34, 0.08);
+  /* Все вкладки остаются в одной строке и делят ширину — без «пропавшей» Ещё */
+  overflow-x: hidden;
+  touch-action: manipulation;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .well-tabbar {
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.99);
+  }
+}
+
+.well-tab {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.08rem;
+  padding: 0.28rem 0.12rem;
+  border: none;
+  border-radius: var(--well-radius-md);
+  background: transparent;
+  cursor: pointer;
+  color: var(--well-muted);
+  font-family: inherit;
+  font-size: clamp(0.55rem, 2.8vw, 0.62rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.well-tab.is-active {
+  color: var(--well-primary-dark);
+  background: var(--well-primary-light);
+}
+
+.well-tab:focus-visible {
+  outline: 2px solid var(--well-accent);
+  outline-offset: 2px;
+}
+
+.well-tab span:last-child {
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  line-height: 1.12;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+@media (min-width: 900px) {
+  .well-main--tabbed {
+    max-width: 720px;
+  }
+}
+
+/* --- Презентация: подписи вокруг «экранчика», строгая ширина телефона --- */
+.well-presentation-root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+.well-app--gate .well-presentation-root,
+.well-app--session .well-presentation-root {
+  min-height: min(100dvh, 100%);
+}
+
+.well-presentation-stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.45rem 0.65rem 1rem;
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
+  align-content: start;
+}
+
+.well-presentation-heading {
+  margin: 0;
+  font-size: clamp(0.82rem, 2.6vw, 1rem);
+  font-weight: 800;
+  color: var(--well-primary-dark);
+  text-align: center;
+  line-height: 1.38;
+  padding: 0.2rem 0.35rem;
+}
+
+.well-presentation-caption {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--well-radius-md);
+  border: 1px solid var(--well-border);
+  background: rgba(255, 255, 255, 0.78);
+  box-sizing: border-box;
+}
+
+.well-presentation-caption__kicker {
+  display: block;
+  font-weight: 800;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--well-primary-dark);
+  margin-bottom: 0.35rem;
+}
+
+.well-presentation-caption__body {
+  display: block;
+  font-weight: 600;
+  color: var(--well-text);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.well-presentation-caption-badges {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.well-presentation-mobile-notes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.well-presentation-mobile-note {
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--well-radius-md);
+  border: 1px solid var(--well-border);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.well-presentation-badges {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.well-presentation-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 2rem;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--well-border);
+  background: var(--well-primary-light);
+  color: var(--well-primary-dark);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1.25;
+  box-shadow: 0 6px 14px rgba(24, 39, 31, 0.08);
+}
+
+.well-presentation-badge__title {
+  display: block;
+  font-weight: 900;
+  margin-bottom: 0.24rem;
+  line-height: 1.22;
+  font-size: 0.98em;
+}
+
+.well-presentation-badge__body {
+  display: block;
+  font-weight: 700;
+  line-height: 1.34;
+  opacity: 0.92;
+  font-size: 0.92em;
+}
+
+.well-presentation-badge--tone-0 {
+  background: #e8f3ea;
+}
+
+.well-presentation-badge--tone-1 {
+  background: #e7f1fb;
+}
+
+.well-presentation-badge--tone-2 {
+  background: #f7f0e5;
+}
+
+.well-presentation-badge--tone-3 {
+  background: #f3eaf6;
+}
+
+@media (min-width: 1100px) {
+  .well-presentation-mobile-notes {
+    display: none;
+  }
+
+  .well-presentation-caption {
+    max-height: min(42vh, 26rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+.well-phone-device {
+  width: 100%;
+  max-width: calc(var(--well-phone-w) + 28px);
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 0;
+}
+
+.well-phone-device__shell {
+  width: 100%;
+  max-width: calc(var(--well-phone-w) + 28px);
+  padding: 11px;
+  border-radius: 42px;
+  background: linear-gradient(160deg, #2a3d34 0%, #141c18 52%, #0a100d 100%);
+  box-shadow:
+    0 22px 46px rgba(12, 22, 18, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  box-sizing: border-box;
+}
+
+.well-phone-device__hint {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--well-muted);
+  text-align: center;
+  max-width: 42rem;
+  padding: 0 0.35rem;
+  line-height: 1.38;
+}
+
+/* Внешний контейнер: без overflow:hidden — иначе нижний drawer обрезается по скруглению экрана */
+.well-phone-device__viewport {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  background: transparent;
+}
+
+/* Реальный «экран»: скругление и клип только здесь; лист и затемнение — siblings во viewport */
+.well-phone-device__screen {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--well-bg);
+}
+
+.well-app--session .well-phone-device__viewport {
+  height: min(82dvh, 820px);
+  max-height: min(82dvh, calc(100dvh - 2.5rem));
+}
+
+.well-phone-device__viewport--gate {
+  height: min(84dvh, var(--well-phone-max-h), calc(100dvh - 2.5rem));
+  max-height: min(84dvh, var(--well-phone-max-h), calc(100dvh - 2.5rem));
+}
+
+.well-phone-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow-x: clip;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-top: 7.25rem;
+  touch-action: pan-y;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(28, 41, 34, 0.2) transparent;
+}
+
+.well-phone-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.well-phone-scroll::-webkit-scrollbar-thumb {
+  background: rgba(28, 41, 34, 0.22);
+  border-radius: 999px;
+}
+
+/* В рамке телефона шапка всегда узкая — две строки: бренд / действия */
+.well-phone-device__viewport .well-top {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
+  padding-top: calc(0.55rem + env(safe-area-inset-top, 0px));
+  padding-left: max(0.65rem, env(safe-area-inset-left, 0px));
+  padding-right: max(0.65rem, env(safe-area-inset-right, 0px));
+  padding-bottom: 0.55rem;
+  background: var(--well-surface);
+}
+
+.well-phone-device__viewport .well-brand {
+  flex: none;
+  width: 100%;
+}
+
+.well-phone-device__viewport .well-top-actions {
+  width: 100%;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.45rem;
+}
+
+.well-phone-device__viewport .well-top-actions .well-key--sm {
+  padding: 0.34rem 0.66rem;
+  font-size: 0.77rem;
+}
+
+.well-phone-device__viewport .well-demo-banner {
+  font-size: 0.78rem;
+  line-height: 1.38;
+}
+
+.well-phone-device__viewport .well-main {
+  max-width: none;
+}
+
+.well-phone-device__viewport .well-main.well-main--tabbed {
+  max-width: none;
+}
+
+.well-phone-device__viewport .well-main--tabbed {
+  padding-top: 0.95rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+}
+
+.well-phone-device__viewport .well-tabbar {
+  position: relative;
+  flex-shrink: 0;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: 0 -4px 18px rgba(28, 41, 34, 0.07);
+}
+
+.well-phone-device__viewport .well-tab {
+  min-height: 2.68rem;
+}
+
+.well-phone-scroll--gate {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.well-phone-scroll--gate .well-role-gate {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 0;
+  padding: 0.35rem 0;
+}
+
+.well-phone-scroll .well-hub-shell {
+  min-width: 0;
+}
+
+/* Якоря и первые секции не прячутся под sticky-шапкой */
+.well-phone-scroll :is(h1, h2, h3, section, [id]) {
+  scroll-margin-top: 7.1rem;
+}
+
+/* Внутри телефонной рамки всегда телефонные сетки, независимо от ширины окна браузера */
+.well-phone-device__viewport .well-hub-pairs,
+.well-phone-device__viewport .well-compare-grid {
+  grid-template-columns: 1fr;
+}
+
+.well-phone-device__viewport .well-grid-2 {
+  grid-template-columns: 1fr;
+}
+
+.well-phone-device__viewport .well-hub-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  grid-template-columns: 1fr;
+}
+
+.well-phone-device__viewport .well-hub-pair .well-connector-v {
+  display: none;
+}
+
+.well-phone-device__viewport .well-hub-pair .well-connector-h {
+  display: block;
+}
+
+.well-phone-device__viewport .well-hub-pair__window,
+.well-phone-device__viewport .well-hub-pair__explainer {
+  grid-column: 1;
+  grid-row: auto;
+}
+
+.well-phone-device__viewport .well-hub-pair__window {
+  order: 1;
+}
+
+.well-phone-device__viewport .well-hub-pair__explainer {
+  order: 2;
+}
+
+.well-phone-device__viewport .well-hub-hero {
+  padding: 0.85rem 0.9rem 0.95rem;
+}
+
+.well-phone-device__viewport .well-window,
+.well-phone-device__viewport .well-explainer,
+.well-phone-device__viewport .well-card {
+  min-width: 0;
+}
+
+.well-phone-device__viewport .well-trust-list {
+  margin: 0;
+  padding-left: 1.05rem;
+}
+
+.well-phone-device__viewport .well-trust-list li {
+  line-height: 1.45;
+}
+
+@media (max-width: 360px) {
+  .well-phone-device__viewport .well-top {
+    gap: 0.35rem;
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+  }
+
+  .well-phone-device__viewport .well-top-actions {
+    gap: 0.3rem;
+  }
+
+  .well-phone-device__viewport .well-top-actions .well-key--sm {
+    padding: 0.3rem 0.54rem;
+    font-size: 0.74rem;
+  }
+
+  .well-phone-device__viewport .well-demo-banner {
+    font-size: 0.74rem;
+  }
+
+  .well-phone-device__viewport .well-tabbar {
+    gap: 0.06rem;
+    padding-top: 0.28rem;
+    padding-bottom: calc(0.34rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .well-phone-device__viewport .well-tab {
+    min-height: 2.5rem;
+    padding: 0.24rem 0.08rem;
+    font-size: 0.53rem;
+  }
+}
+
+/* Ниже десктопа презентации: подписи не прячем — ставим под «телефон» явным порядком grid */
+@media (max-width: 1099px) {
+  .well-app--session .well-phone-device__viewport {
+    height: min(74dvh, 760px);
+    max-height: min(74dvh, calc(100dvh - 10.5rem));
+  }
+
+  .well-phone-device__viewport--gate {
+    height: min(76dvh, var(--well-phone-max-h), calc(100dvh - 9.5rem));
+    max-height: min(76dvh, var(--well-phone-max-h), calc(100dvh - 9.5rem));
+  }
+
+  .well-presentation-badges {
+    grid-row: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .well-presentation-mobile-notes {
+    grid-row: 4;
+  }
+
+  .well-presentation-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .well-presentation-heading {
+    grid-row: 1;
+  }
+
+  .well-phone-device {
+    grid-row: 3;
+  }
+
+  .well-presentation-caption--left {
+    grid-row: 4;
+  }
+
+  .well-presentation-caption--right {
+    grid-row: 5;
+  }
+
+  .well-presentation-caption {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1099px) {
+  .well-app--session .well-phone-device__viewport {
+    height: min(78dvh, 790px);
+    max-height: min(78dvh, calc(100dvh - 7.5rem));
+  }
+
+  .well-phone-device__viewport--gate {
+    height: min(80dvh, var(--well-phone-max-h), calc(100dvh - 6.8rem));
+    max-height: min(80dvh, var(--well-phone-max-h), calc(100dvh - 6.8rem));
+  }
+
+  .well-presentation-stage {
+    grid-template-columns: minmax(170px, 1fr) minmax(300px, calc(var(--well-phone-w) + 18px)) minmax(170px, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    column-gap: 0.75rem;
+    row-gap: 0.5rem;
+    align-items: start;
+    max-width: min(1240px, 100%);
+    padding: 0.9rem 1rem 1.25rem;
+  }
+
+  .well-presentation-heading {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .well-phone-device {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .well-presentation-caption--left {
+    display: block;
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 0.72rem;
+    padding: 0.45rem 0.5rem;
+  }
+
+  .well-presentation-caption--right {
+    display: block;
+    grid-column: 3;
+    grid-row: 2;
+    font-size: 0.72rem;
+    padding: 0.45rem 0.5rem;
+  }
+
+  .well-presentation-badges {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 0.45rem;
+  }
+
+  .well-presentation-mobile-notes {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  .well-presentation-stage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0.65rem;
+  }
+
+  .well-presentation-heading {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .well-phone-device {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  .well-presentation-badges {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 0.55rem;
+  }
+
+  .well-presentation-caption--left {
+    grid-column: 1;
+    grid-row: 4;
+    align-self: start;
+  }
+
+  .well-presentation-caption--right {
+    grid-column: 2;
+    grid-row: 4;
+    align-self: start;
+  }
+
+  .well-presentation-mobile-notes {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0.65rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .well-app--session .well-phone-device__viewport {
+    height: min(72dvh, 710px);
+    max-height: min(72dvh, calc(100dvh - 11.75rem));
+  }
+
+  .well-phone-device__viewport--gate {
+    height: min(74dvh, var(--well-phone-max-h), calc(100dvh - 11rem));
+    max-height: min(74dvh, var(--well-phone-max-h), calc(100dvh - 11rem));
+  }
+
+  .well-phone-device__shell {
+    padding: 8px;
+    border-radius: 34px;
+  }
+
+  .well-phone-device__screen {
+    border-radius: 26px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .well-app--session .well-phone-device__viewport {
+    height: min(80dvh, 820px);
+    max-height: min(80dvh, calc(100dvh - 4.25rem));
+  }
+
+  .well-phone-device__viewport--gate {
+    height: min(82dvh, var(--well-phone-max-h), calc(100dvh - 4rem));
+    max-height: min(82dvh, var(--well-phone-max-h), calc(100dvh - 4rem));
+  }
+
+  .well-presentation-stage {
+    grid-template-columns: minmax(200px, 1fr) minmax(300px, calc(var(--well-phone-w) + 28px)) minmax(200px, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    column-gap: 1.15rem;
+    row-gap: 0.55rem;
+    align-items: start;
+    max-width: min(1380px, 100%);
+    padding: 1rem 1.25rem 1.65rem;
+  }
+
+  .well-presentation-heading {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: 1.05rem;
+  }
+
+  .well-presentation-caption--left {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .well-phone-device {
+    grid-column: 2;
+    grid-row: 2;
+    position: sticky;
+    top: 0.85rem;
+    align-self: start;
+  }
+
+  .well-presentation-caption--right {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .well-presentation-badges {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+    max-width: 980px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 479px) {
+  .well-presentation-badges {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Canonical presentation layout (overrides legacy grid-row setup) --- */
+.well-presentation-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.65rem;
+}
+
+.well-presentation-frame {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  align-items: start;
+}
+
+.well-presentation-frame .well-phone-device {
+  order: 2;
+  justify-self: center;
+}
+
+.well-presentation-frame .well-presentation-caption--left,
+.well-presentation-frame .well-presentation-caption--right {
+  display: block;
+}
+
+.well-presentation-mobile-notes {
+  display: none !important;
+}
+
+@media (min-width: 900px) {
+  .well-presentation-frame {
+    grid-template-columns: minmax(180px, 1fr) minmax(300px, calc(var(--well-phone-w) + 28px)) minmax(180px, 1fr);
+    column-gap: 0.9rem;
+  }
+
+  .well-presentation-frame .well-presentation-caption--left,
+  .well-presentation-frame .well-presentation-caption--right {
+    display: block;
+  }
+
+  .well-presentation-frame .well-presentation-caption--left {
+    grid-column: 1;
+  }
+
+  .well-presentation-frame .well-phone-device {
+    grid-column: 2;
+  }
+
+  .well-presentation-frame .well-presentation-caption--right {
+    grid-column: 3;
+  }
+
+  .well-presentation-mobile-notes {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .well-presentation-frame {
+    max-width: min(460px, 100%);
+    margin: 0 auto;
+  }
+
+  .well-presentation-frame .well-presentation-caption--left {
+    order: 1;
+  }
+
+  .well-presentation-frame .well-phone-device {
+    order: 2;
+  }
+
+  .well-presentation-frame .well-presentation-caption--right {
+    order: 3;
+  }
+
+  .well-presentation-caption {
+    font-size: 0.74rem;
+    padding: 0.48rem 0.56rem;
+  }
+
+  .well-presentation-caption-badges {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 479px) {
+  .well-presentation-caption-badges {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Final: badge zones around phone --- */
+.well-presentation-stage {
+  position: relative;
+  overflow: visible;
+}
+
+.well-presentation-badges--inline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.well-presentation-orbit {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+.well-presentation-badge--orbit {
+  width: 100%;
+  min-height: 2.45rem;
+  padding: 0.48rem 0.72rem;
+  border-radius: var(--well-radius-lg);
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 0.78rem;
+  line-height: 1.32;
+}
+
+@media (min-width: 1200px) {
+  .well-presentation-frame .well-presentation-caption {
+    min-height: 7rem;
+  }
+
+  .well-presentation-badges--inline {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .well-presentation-orbit {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .well-presentation-badges--inline {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Balanced side panels around phone --- */
+@media (min-width: 900px) {
+  .well-presentation-frame {
+    align-items: stretch;
+  }
+
+  .well-presentation-frame .well-presentation-caption {
+    display: flex;
+    flex-direction: column;
+    min-height: clamp(18rem, 48vh, 30rem);
+    overflow: visible;
+  }
+
+  .well-presentation-frame .well-presentation-caption__body {
+    margin-bottom: 0.45rem;
+  }
+
+  .well-presentation-frame .well-presentation-orbit {
+    flex: 0 0 auto;
+    min-height: 0;
+    margin-top: 0.45rem;
+    display: grid;
+    grid-template-rows: none;
+    grid-auto-rows: minmax(0, auto);
+    align-content: start;
+    gap: 0.55rem;
+  }
+
+  /* cancel older desktop rule with internal scrollbars */
+  .well-presentation-caption {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+/* --- Large presentation scale (desktop/tablet landscape) --- */
+@media (min-width: 900px) {
+  .well-presentation-root {
+    --well-phone-w: min(100vw - 2rem, 408px);
+  }
+
+  .well-presentation-heading {
+    font-size: clamp(1rem, 1.25vw, 1.32rem);
+    line-height: 1.3;
+    padding: 0.25rem 0.45rem;
+  }
+
+  .well-presentation-frame {
+    grid-template-columns: minmax(240px, 1fr) minmax(320px, calc(var(--well-phone-w) + 34px)) minmax(240px, 1fr);
+    column-gap: 1.05rem;
+  }
+
+  .well-presentation-caption {
+    font-size: 1.08rem;
+    line-height: 1.58;
+    padding: 1.02rem 1.12rem;
+    border-radius: var(--well-radius-lg);
+  }
+
+  .well-presentation-caption__kicker {
+    font-size: 0.9rem;
+    margin-bottom: 0.56rem;
+    letter-spacing: 0.05em;
+  }
+
+  .well-presentation-caption__body {
+    font-size: 1.06rem;
+    line-height: 1.6;
+  }
+
+  .well-presentation-orbit {
+    gap: 0.72rem;
+    margin-top: 0.9rem;
+  }
+
+  .well-presentation-badge {
+    min-height: 0;
+    padding: 0.5rem 0.78rem;
+    font-size: 0.92rem;
+    line-height: 1.36;
+  }
+
+  .well-presentation-badge--orbit {
+    min-height: 0;
+    padding: 0.62rem 0.82rem;
+    font-size: 0.94rem;
+    line-height: 1.4;
+    border-radius: var(--well-radius-xl);
+    justify-content: flex-start;
+    text-align: left;
+    align-items: flex-start;
+    flex-direction: column;
+    box-shadow: 0 10px 22px rgba(24, 39, 31, 0.12);
+  }
+
+  .well-phone-device__hint {
+    font-size: 0.74rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .well-presentation-root {
+    --well-phone-w: min(100vw - 2.5rem, 420px);
+  }
+
+  .well-presentation-frame {
+    grid-template-columns: minmax(270px, 1fr) minmax(340px, calc(var(--well-phone-w) + 36px)) minmax(270px, 1fr);
+    column-gap: 1.25rem;
+  }
+
+  .well-presentation-caption {
+    font-size: 1.14rem;
+    padding: 1.1rem 1.22rem;
+  }
+
+  .well-presentation-caption__body {
+    font-size: 1.1rem;
+  }
+
+  .well-presentation-badge {
+    font-size: 0.96rem;
+  }
+}
