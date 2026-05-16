@@ -10,7 +10,7 @@ const HUB_WINDOW_PARAM = 'hubWindow'
 export function readHubWindowParam(): HubWindowId | null {
   if (typeof window === 'undefined') return null
   const w = new URLSearchParams(window.location.search).get(HUB_WINDOW_PARAM)
-  if (w === 'care' || w === 'monitoring' || w === 'planning' || w === 'insurance') return w
+  if (w === 'care' || w === 'monitoring' || w === 'insurance') return w
   return null
 }
 
@@ -33,8 +33,6 @@ function isSceneId(s: string): s is SceneId {
     'hub',
     'care',
     'monitoring',
-    'planning',
-    'bereavement',
     'insurance',
     'economics',
     'trust',

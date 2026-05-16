@@ -409,6 +409,105 @@ body {
   padding: 0.2rem 0.35rem;
 }
 
+.well-presentation-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.65rem 1rem;
+  padding: 0.35rem 0.5rem 0.5rem;
+  margin: 0 auto;
+  max-width: min(100%, 52rem);
+  border-radius: var(--well-radius-md);
+  border: 1px solid var(--well-border);
+  background: rgba(255, 255, 255, 0.82);
+  box-sizing: border-box;
+}
+
+.well-presentation-toolbar__group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.well-presentation-toolbar__label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--well-primary-dark);
+}
+
+.well-presentation-toolbar__themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.well-presentation-theme-swatch {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(28, 41, 34, 0.12);
+  background: var(--swatch-color);
+  cursor: pointer;
+  box-shadow: var(--well-shadow-sm);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.well-presentation-theme-swatch:hover {
+  transform: scale(1.06);
+}
+
+.well-presentation-theme-swatch:focus-visible {
+  outline: 2px solid var(--well-primary);
+  outline-offset: 2px;
+}
+
+.well-presentation-theme-swatch.is-active {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--well-primary-dark);
+  transform: scale(1.08);
+}
+
+.well-presentation-toolbar__font {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+.well-presentation-font-btn {
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--well-border);
+  background: var(--well-surface);
+  color: var(--well-text);
+  font-family: var(--well-font);
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.well-presentation-font-btn:hover {
+  background: var(--well-primary-light);
+}
+
+.well-presentation-font-btn:focus-visible {
+  outline: 2px solid var(--well-primary);
+  outline-offset: 2px;
+}
+
+.well-presentation-font-btn.is-active {
+  background: var(--well-primary);
+  border-color: var(--well-primary-dark);
+  color: #fff;
+}
+
 .well-presentation-caption {
   font-size: 0.78rem;
   line-height: 1.45;

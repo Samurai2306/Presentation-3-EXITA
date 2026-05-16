@@ -1,12 +1,10 @@
 import {
   Activity,
-  CalendarCheck,
   ChartNoAxesCombined,
   ClipboardList,
   Heart,
   HeartHandshake,
   LayoutGrid,
-  ListTodo,
   Menu,
   Settings,
   ShieldCheck,
@@ -23,6 +21,7 @@ import { SkipLink } from './components/SkipLink'
 import { WellIcon } from './components/WellIcon'
 import { PresentationChrome } from './components/PresentationChrome'
 import { DEMO_CAREGIVER_PIN, LABELS } from './lib/terminology'
+import { getPhoneViewportPresentationProps } from './lib/phonePresentation'
 import { getPresentationBadges, getPresentationCaptions } from './lib/presentationCaptions'
 import { readUrlRoleScene, writeUrlRoleScene } from './lib/urlState'
 import { getDemoPrefs, patchDemoPrefs, resetDemoStorage, subscribeDemo } from './services/demoStore'
@@ -31,8 +30,6 @@ import type { AppRole, SceneId } from './types'
 const HubScene = lazy(() => import('./scenes/HubScene').then((m) => ({ default: m.HubScene })))
 const CareScene = lazy(() => import('./scenes/CareScene').then((m) => ({ default: m.CareScene })))
 const MonitoringScene = lazy(() => import('./scenes/MonitoringScene').then((m) => ({ default: m.MonitoringScene })))
-const PlanningScene = lazy(() => import('./scenes/PlanningScene').then((m) => ({ default: m.PlanningScene })))
-const BereavementScene = lazy(() => import('./scenes/BereavementScene').then((m) => ({ default: m.BereavementScene })))
 const InsuranceScene = lazy(() => import('./scenes/InsuranceScene').then((m) => ({ default: m.InsuranceScene })))
 const EconomicsScene = lazy(() => import('./scenes/EconomicsScene').then((m) => ({ default: m.EconomicsScene })))
 const TrustScene = lazy(() => import('./scenes/TrustScene').then((m) => ({ default: m.TrustScene })))
@@ -42,9 +39,9 @@ const CaregiverConsoleScene = lazy(() => import('./scenes/CaregiverConsoleScene'
 
 const ROLE_KEY = 'ya-zhivoy-role'
 
-const PATIENT_MORE_SCENES: SceneId[] = ['hub', 'monitoring', 'planning', 'bereavement', 'insurance', 'economics']
+const PATIENT_MORE_SCENES: SceneId[] = ['hub', 'monitoring', 'insurance', 'economics']
 
-const CAREGIVER_MORE_SCENES: SceneId[] = ['hub', 'bereavement', 'insurance', 'economics', 'trust']
+const CAREGIVER_MORE_SCENES: SceneId[] = ['hub', 'insurance', 'economics', 'trust']
 
 function sceneMoreLabel(scene: SceneId): string {
   switch (scene) {
@@ -52,10 +49,6 @@ function sceneMoreLabel(scene: SceneId): string {
       return LABELS.hubTab
     case 'monitoring':
       return LABELS.monitoringTab
-    case 'planning':
-      return LABELS.planningTab
-    case 'bereavement':
-      return 'Шаги'
     case 'insurance':
       return 'Страховка'
     case 'economics':
@@ -173,10 +166,6 @@ function DemoSettingsPanel({ onClose }: { onClose: () => void }) {
     <div className="well-prose">
       <p>Локальные переключатели для презентации. Роль «пациент / опекун» не сбрасывается.</p>
       <label className="well-console-check">
-        <input type="checkbox" checked={p.largeText} onChange={() => patchDemoPrefs({ largeText: !p.largeText })} />
-        Крупнее шрифт
-      </label>
-      <label className="well-console-check">
         <input type="checkbox" checked={p.simulateDisconnect} onChange={() => patchDemoPrefs({ simulateDisconnect: !p.simulateDisconnect })} />
         Симулировать обрыв связи (баннер у пациента)
       </label>
@@ -210,6 +199,7 @@ export default function YaZhivoyApp() {
   const [gateCaregiverPin, setGateCaregiverPin] = useState(false)
   const [pinInput, setPinInput] = useState('')
   const [pinError, setPinError] = useState<string | null>(null)
+  const [, bumpPresentationPrefs] = useState(0)
 
   const openDrawer = useCallback((title: string, body: ReactNode, description?: string) => {
     setDrawer({ title, body, description })
@@ -230,17 +220,9 @@ export default function YaZhivoyApp() {
     if (role) writeUrlRoleScene(role, scene)
   }, [role, scene])
 
-  useEffect(() => {
-    const syncLarge = () => {
-      document.documentElement.classList.toggle('well-demo-large-text', getDemoPrefs().largeText)
-    }
-    syncLarge()
-    const off = subscribeDemo(syncLarge)
-    return () => {
-      off()
-      document.documentElement.classList.remove('well-demo-large-text')
-    }
-  }, [])
+  useEffect(() => subscribeDemo(() => bumpPresentationPrefs((n) => n + 1)), [])
+
+  const phonePresentation = getPhoneViewportPresentationProps()
 
   useEffect(() => {
     const bar = tabbarRef.current
@@ -286,7 +268,6 @@ export default function YaZhivoyApp() {
   const openMoreMenu = useCallback(() => {
     const items: MoreDrawerItem[] = [
       { id: 'hub', label: `${LABELS.hubTab} (мини-окна)`, icon: LayoutGrid },
-      { id: 'bereavement', label: 'Шаги', icon: ListTodo },
       { id: 'insurance', label: 'Страховка', icon: ShieldCheck },
       { id: 'economics', label: 'Смета', icon: ChartNoAxesCombined },
       { id: 'trust', label: LABELS.trustTab, icon: HeartHandshake },
@@ -312,8 +293,6 @@ export default function YaZhivoyApp() {
     const items: MoreDrawerItem[] = [
       { id: 'hub', label: LABELS.hubTab, icon: LayoutGrid },
       { id: 'monitoring', label: LABELS.monitoringTab, icon: Activity },
-      { id: 'planning', label: LABELS.planningTab, icon: CalendarCheck },
-      { id: 'bereavement', label: 'Шаги', icon: ListTodo },
       { id: 'insurance', label: 'Страховка', icon: ShieldCheck },
       { id: 'economics', label: 'Смета', icon: ChartNoAxesCombined },
     ]
@@ -345,7 +324,6 @@ export default function YaZhivoyApp() {
       { id: 'caregiver_console', label: LABELS.consoleTab, icon: ClipboardList },
       { id: 'care', label: LABELS.careTab, icon: Heart },
       { id: 'monitoring', label: LABELS.monitoringTab, icon: Activity },
-      { id: 'planning', label: LABELS.planningTab, icon: CalendarCheck },
     ],
     [],
   )
@@ -368,7 +346,10 @@ export default function YaZhivoyApp() {
         <SkipLink />
         <AmbientBackground />
         <PresentationChrome slideTitle={gateCaption.slideTitle} context={gateCaption.context} lookAt={gateCaption.lookAt} badges={presentationBadges}>
-          <div className="well-phone-device__viewport well-phone-device__viewport--gate">
+          <div
+            className={`well-phone-device__viewport well-phone-device__viewport--gate ${phonePresentation.className}`}
+            data-well-theme={phonePresentation['data-well-theme']}
+          >
             <div className="well-phone-device__screen">
               <div className="well-phone-scroll well-phone-scroll--gate">
                 <div className="well-role-gate">
@@ -492,8 +473,6 @@ export default function YaZhivoyApp() {
                 ({
                   care: 'care',
                   monitoring: 'monitoring',
-                  planning: 'planning',
-                  bereavement: 'bereavement',
                   insurance: 'insurance',
                 } as const)[target],
               )
@@ -504,10 +483,6 @@ export default function YaZhivoyApp() {
         return <CareScene onOpenDrawer={openDrawer} mode={role === 'patient' ? 'patient' : 'caregiver'} />
       case 'monitoring':
         return <MonitoringScene onOpenDrawer={openDrawer} viewMode={role === 'patient' ? 'patient' : 'full'} />
-      case 'planning':
-        return <PlanningScene onOpenDrawer={openDrawer} />
-      case 'bereavement':
-        return <BereavementScene />
       case 'insurance':
         return <InsuranceScene />
       case 'economics':
@@ -530,7 +505,10 @@ export default function YaZhivoyApp() {
         lookAt={presentationCaption.lookAt}
         badges={presentationBadges}
       >
-        <div className="well-phone-device__viewport">
+        <div
+          className={`well-phone-device__viewport ${phonePresentation.className}`}
+          data-well-theme={phonePresentation['data-well-theme']}
+        >
           <div className="well-phone-device__screen">
             <div className="well-phone-scroll">
               <header className="well-top">

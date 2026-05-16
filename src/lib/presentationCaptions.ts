@@ -79,13 +79,6 @@ export function getPresentationBadges(role: AppRole | null, scene: SceneId): str
         'Единая лента событий: контекст не теряется между звонками и сообщениями.',
         'Роль куратора: есть ответственный за финальное решение и контроль исполнения.',
       ]
-    case 'planning':
-      return [
-        'Планирование заранее: сценарии позволяют действовать спокойно до критического момента.',
-        'Прозрачные ориентиры: семье проще договориться о шагах и сроках.',
-        'Локальная симуляция: можно прогнать варианты без риска для боевых данных.',
-        'Подготовка без стресса: обсуждение переводится из режима паники в режим процесса.',
-      ]
     case 'hub':
       return [
         'Мини-окна обзора: взаимосвязи между модулями читаются за несколько секунд.',
@@ -169,8 +162,6 @@ export function getPresentationCaptions(role: AppRole | null, scene: SceneId): P
           lookAt: 'Окна можно «фокусировать»; URL-параметр hubWindow открывает нужное окно при входе.',
         }
       case 'monitoring':
-      case 'planning':
-      case 'bereavement':
       case 'insurance':
       case 'economics':
         return {
@@ -203,23 +194,11 @@ export function getPresentationCaptions(role: AppRole | null, scene: SceneId): P
         context: 'Те же события, что у пациента, плюс фильтры и действия куратора в демо.',
         lookAt: 'Фильтр «Сегодня / Неделя / Все» и раскрывающиеся карточки.',
       }
-    case 'planning':
-      return {
-        slideTitle: 'План',
-        context: 'Демонстрация сценариев планирования и пакетов до события.',
-        lookAt: 'Используйте элементы управления внутри экрана — всё локально.',
-      }
     case 'hub':
       return {
         slideTitle: 'Обзор для презентации',
         context: 'Тот же Hub с мини-окнами; удобно показывать связь блоков «зачем семье».',
         lookAt: 'Deep-link hubWindow в адресной строке подсвечивает нужное окно.',
-      }
-    case 'bereavement':
-      return {
-        slideTitle: 'Шаги после события',
-        context: 'Чеклист с сохранением в браузере и пошаговый просмотр этапов.',
-        lookAt: 'Отметки прогресса и навигация «Назад / Дальше».',
       }
     case 'insurance':
       return {
@@ -258,8 +237,6 @@ const caregiverDefault: PresentationCaptionSet = {
 
 const sceneLabels: Partial<Record<SceneId, string>> = {
   monitoring: 'Наблюдение',
-  planning: 'План',
-  bereavement: 'Шаги',
   insurance: 'Страховка',
   economics: 'Смета',
 }

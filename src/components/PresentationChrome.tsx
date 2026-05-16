@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import { PresentationControls } from './PresentationControls'
+
 type PresentationChromeProps = {
   slideTitle: string
   context: string
@@ -36,6 +38,8 @@ export function PresentationChrome({ slideTitle, context, lookAt, badges, childr
     <div className="well-presentation-root">
       <div className="well-presentation-stage">
         <p className="well-presentation-heading">{slideTitle}</p>
+
+        <PresentationControls />
 
         <div className="well-presentation-frame">
           <aside className="well-presentation-caption well-presentation-caption--left">

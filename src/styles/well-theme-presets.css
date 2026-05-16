@@ -1,0 +1,77 @@
+/* Theme overrides scoped to phone viewport (presentation chrome stays on :root green). */
+
+.well-phone-device__viewport[data-well-theme='blue'] {
+  --well-bg: #eef6fa;
+  --well-bg-elevated: #f8fbfd;
+  --well-primary: #2a6b8a;
+  --well-primary-dark: #1f5269;
+  --well-primary-light: #e3f0f7;
+  --well-accent: #3d8fb3;
+  --well-accent-soft: #b8d9ea;
+  --well-border: #c5dce8;
+  --well-border-strong: #8fb8cc;
+  --well-success: #2a6b8a;
+}
+
+.well-phone-device__viewport[data-well-theme='amber'] {
+  --well-bg: #faf6ee;
+  --well-bg-elevated: #fffdf8;
+  --well-primary: #9a6b2e;
+  --well-primary-dark: #7a5424;
+  --well-primary-light: #f5ecd8;
+  --well-accent: #c4923a;
+  --well-accent-soft: #e8d4a8;
+  --well-border: #e0d4b8;
+  --well-border-strong: #c9b88a;
+  --well-success: #9a6b2e;
+}
+
+.well-phone-device__viewport[data-well-theme='violet'] {
+  --well-bg: #f5f2fa;
+  --well-bg-elevated: #fcfbfe;
+  --well-primary: #6b5b8a;
+  --well-primary-dark: #52456b;
+  --well-primary-light: #ebe6f4;
+  --well-accent: #8a7aad;
+  --well-accent-soft: #d4cce8;
+  --well-border: #d4cce4;
+  --well-border-strong: #b0a4c8;
+  --well-success: #6b5b8a;
+}
+
+.well-phone-device__viewport[data-well-theme='coral'] {
+  --well-bg: #faf3f1;
+  --well-bg-elevated: #fffaf9;
+  --well-primary: #b85c4a;
+  --well-primary-dark: #944838;
+  --well-primary-light: #f8e8e4;
+  --well-accent: #d4735f;
+  --well-accent-soft: #f0c4ba;
+  --well-border: #e8cfc8;
+  --well-border-strong: #d4a89e;
+  --well-success: #b85c4a;
+}
+
+.well-phone-device__viewport.well-phone-font--min .well-phone-device__screen {
+  font-size: 87.5%;
+}
+
+.well-phone-device__viewport.well-phone-font--normal .well-phone-device__screen {
+  font-size: 100%;
+}
+
+.well-phone-device__viewport.well-phone-font--large .well-phone-device__screen {
+  font-size: 112.5%;
+}
+
+.well-phone-device__viewport.well-phone-font--large .well-phone-device__screen .well-title {
+  font-size: clamp(1.45rem, 3vw, 1.95rem);
+}
+
+.well-phone-device__viewport.well-phone-font--max .well-phone-device__screen {
+  font-size: 125%;
+}
+
+.well-phone-device__viewport.well-phone-font--max .well-phone-device__screen .well-title {
+  font-size: clamp(1.55rem, 3.2vw, 2.05rem);
+}

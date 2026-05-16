@@ -7,11 +7,9 @@ export type SceneId =
   | 'hub'
   | 'care'
   | 'monitoring'
-  | 'planning'
-  | 'bereavement'
   | 'insurance'
   | 'economics'
   | 'trust'
 
 /** Окна-приложения на главном экране (Hub). */
-export type HubWindowId = 'care' | 'monitoring' | 'planning' | 'insurance'
+export type HubWindowId = 'care' | 'monitoring' | 'insurance'

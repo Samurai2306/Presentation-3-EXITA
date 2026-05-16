@@ -99,14 +99,13 @@ export type DeviceReadingEntry = {
   value: string
 }
 
-export type BereavementStep = {
-  id: string
-  label: string
-  done: boolean
-}
+export type ThemeId = 'green' | 'blue' | 'amber' | 'violet' | 'coral'
+
+export type FontScale = 'min' | 'normal' | 'large' | 'max'
 
 export type DemoPrefs = {
-  largeText: boolean
+  themeId: ThemeId
+  fontScale: FontScale
   simulateDisconnect: boolean
   simulateLowBattery: boolean
 }

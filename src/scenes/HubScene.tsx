@@ -2,10 +2,8 @@ import {
   ArrowRight,
   BookOpen,
   Calculator,
-  CalendarPlus,
   CircleHelp,
   Layers,
-  List,
   MessageCircle,
   Sparkles,
 } from 'lucide-react'
@@ -24,13 +22,7 @@ import type { HubWindowId } from '../types'
 
 type HubSceneProps = {
   onOpenDrawer: (title: string, content: ReactNode) => void
-  onGoTo: (scene: 'care' | 'monitoring' | 'planning' | 'bereavement' | 'insurance') => void
-}
-
-const PKG: Record<'basic' | 'comfort' | 'premium', number> = {
-  basic: 8900,
-  comfort: 14900,
-  premium: 24900,
+  onGoTo: (scene: 'care' | 'monitoring' | 'insurance') => void
 }
 
 export function HubScene({ onOpenDrawer, onGoTo }: HubSceneProps) {
@@ -96,24 +88,6 @@ export function HubScene({ onOpenDrawer, onGoTo }: HubSceneProps) {
             <WindowFrame windowId="monitoring" isFocused={focused === 'monitoring'} onActivate={onActivate}>
               <WindowHeader title="Сигналы" subtitle="Демо" status="HIL" />
               <MonitoringWindowBody onOpenDrawer={onOpenDrawer} onGoFull={() => onGoTo('monitoring')} onInteract={() => onActivate('monitoring')} />
-            </WindowFrame>
-          }
-        />
-
-        <HubPair
-          explainer={
-            <ExplainerCard
-              windowId="planning"
-              isLinked={focused === 'planning'}
-              label="Коротко"
-              title="План заранее"
-              points={['Выбираете пакет до события.', 'Цена-ориентир обновляется сразу.', 'Меньше сюрпризов для семьи.']}
-            />
-          }
-          window={
-            <WindowFrame windowId="planning" isFocused={focused === 'planning'} onActivate={onActivate}>
-              <WindowHeader title="План" subtitle="Демо" status="черновик" />
-              <PlanningWindowBody onOpenDrawer={onOpenDrawer} onGoTo={onGoTo} onInteract={() => onActivate('planning')} />
             </WindowFrame>
           }
         />
@@ -316,73 +290,6 @@ function MonitoringWindowBody({
   )
 }
 
-function PlanningWindowBody({
-  onOpenDrawer,
-  onGoTo,
-  onInteract,
-}: {
-  onOpenDrawer: (t: string, c: ReactNode) => void
-  onGoTo: HubSceneProps['onGoTo']
-  onInteract: () => void
-}) {
-  const [pkg, setPkg] = useState<'basic' | 'comfort' | 'premium'>('comfort')
-  const price = PKG[pkg]
-
-  return (
-    <div className="well-window__body">
-      <div className="well-packages" role="radiogroup" aria-label="Пакет">
-        {(
-          [
-            ['basic', 'Базовый'],
-            ['comfort', 'Комфорт'],
-            ['premium', 'Полный'],
-          ] as const
-        ).map(([id, label]) => (
-          <button
-            key={id}
-            type="button"
-            role="radio"
-            aria-checked={pkg === id}
-            className={`well-package ${pkg === id ? 'is-active' : ''}`}
-            onClick={() => {
-              onInteract()
-              setPkg(id)
-            }}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
-      <div className="well-price-row">
-        <span className="well-field-label well-hub-price-label">
-          Ориентир
-        </span>
-        <span className="well-num well-metric-v well-hub-price-value">
-          {price.toLocaleString('ru-RU')} руб.
-        </span>
-      </div>
-      <p className="well-hint">Цифры для примера.</p>
-
-      <div className="well-window__footer">
-        <KeyButton
-          variant="ghost"
-          size="sm"
-          iconLeft={<WellIcon icon={List} size={16} />}
-          onClick={() => {
-            onInteract()
-            onOpenDrawer('Сравнение пакетов', <HubDrawerPackages />)
-          }}
-        >
-          Сравнить
-        </KeyButton>
-        <KeyButton variant="primary" size="sm" iconRight={<WellIcon icon={CalendarPlus} size={16} />} onClick={() => onGoTo('planning')}>
-          Полный план
-        </KeyButton>
-      </div>
-    </div>
-  )
-}
-
 function InsuranceWindowBody({
   onOpenDrawer,
   onGoTo,
@@ -498,22 +405,6 @@ function HubDrawerHil() {
       </p>
       <span className="well-pill well-pill--warn">Не ставит диагноз</span>
     </div>
-  )
-}
-
-function HubDrawerPackages() {
-  return (
-    <ul className="well-prose">
-      <li>
-        <strong>Базовый</strong> — документы и маршрут.
-      </li>
-      <li>
-        <strong>Комфорт</strong> — больше сопровождения.
-      </li>
-      <li>
-        <strong>Полный</strong> — всё, что договорите с партнёром (пример).
-      </li>
-    </ul>
   )
 }
 

@@ -1736,14 +1736,6 @@
   }
 }
 
-html.well-demo-large-text {
-  font-size: 110%;
-}
-
-html.well-demo-large-text .well-title {
-  font-size: clamp(1.45rem, 3vw, 1.95rem);
-}
-
 .well-section-head {
   margin-top: 1.1rem;
   margin-bottom: 0.35rem;

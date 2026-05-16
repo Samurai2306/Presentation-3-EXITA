@@ -3,7 +3,6 @@
  */
 import type {
   AuditEntry,
-  BereavementStep,
   DayEvent,
   DemoPrefs,
   DeviceReadingEntry,
@@ -30,7 +29,6 @@ export const KEYS = {
   devices: `${PREFIX}devices`,
   deviceReadings: `${PREFIX}device-readings`,
   dayEvents: `${PREFIX}day-events`,
-  bereavementSteps: `${PREFIX}bereavement-steps`,
   demoPrefs: `${PREFIX}demo-prefs`,
   monitoringPainThreshold: `${PREFIX}monitoring-pain-threshold`,
 } as const
@@ -381,34 +379,29 @@ export function setDayEvents(events: DayEvent[]) {
   dispatchDemo()
 }
 
-const defaultBereavement: BereavementStep[] = [
-  { id: 'b1', label: 'Собрать документы и контакты', done: false },
-  { id: 'b2', label: 'Связаться с поликлиникой', done: false },
-  { id: 'b3', label: 'Согласовать даты с семьёй', done: false },
-]
-
-export function getBereavementSteps(): BereavementStep[] {
-  return safeParse<BereavementStep[]>(localStorage.getItem(KEYS.bereavementSteps), defaultBereavement)
-}
-
-export function setBereavementSteps(steps: BereavementStep[]) {
-  localStorage.setItem(KEYS.bereavementSteps, JSON.stringify(steps))
-  dispatchDemo()
-}
-
-export function toggleBereavementStep(id: string) {
-  const next = getBereavementSteps().map((s) => (s.id === id ? { ...s, done: !s.done } : s))
-  setBereavementSteps(next)
-}
-
 const defaultDemoPrefs: DemoPrefs = {
-  largeText: false,
+  themeId: 'green',
+  fontScale: 'normal',
   simulateDisconnect: false,
   simulateLowBattery: false,
 }
 
+type LegacyDemoPrefs = Partial<DemoPrefs> & { largeText?: boolean }
+
+function normalizeDemoPrefs(raw: LegacyDemoPrefs): DemoPrefs {
+  const merged = { ...defaultDemoPrefs, ...raw }
+  if (raw.largeText === true && raw.fontScale === undefined) {
+    merged.fontScale = 'large'
+  }
+  const themeIds: DemoPrefs['themeId'][] = ['green', 'blue', 'amber', 'violet', 'coral']
+  if (!themeIds.includes(merged.themeId)) merged.themeId = 'green'
+  const scales: DemoPrefs['fontScale'][] = ['min', 'normal', 'large', 'max']
+  if (!scales.includes(merged.fontScale)) merged.fontScale = 'normal'
+  return merged
+}
+
 export function getDemoPrefs(): DemoPrefs {
-  return { ...defaultDemoPrefs, ...safeParse<Partial<DemoPrefs>>(localStorage.getItem(KEYS.demoPrefs), {}) }
+  return normalizeDemoPrefs(safeParse<LegacyDemoPrefs>(localStorage.getItem(KEYS.demoPrefs), {}))
 }
 
 export function setDemoPrefs(p: DemoPrefs) {

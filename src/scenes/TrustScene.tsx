@@ -62,7 +62,7 @@ export function TrustScene({ onOpenDrawer, onCloseDrawer }: TrustSceneProps) {
             Закон и данные
           </h3>
           <div>
-            {['Погребение', 'Наследство', 'Персональные данные', 'Экспорт в ЕС'].map((t) => (
+            {['Доступы', 'Журнал', 'Персональные данные', 'Экспорт в ЕС'].map((t) => (
               <span key={t} className="well-tag">
                 {t}
               </span>
@@ -80,7 +80,7 @@ export function TrustScene({ onOpenDrawer, onCloseDrawer }: TrustSceneProps) {
           </h3>
           <ul className="well-prose well-trust-list">
             <li>Можно отдельный контур для чувствительных договоров.</li>
-            <li>Человек утверждает всё, что про деньги и наследство.</li>
+            <li>Человек подтверждает передачу данных и финансовые поручения.</li>
             <li>Критичный код без лишних CDN.</li>
           </ul>
         </div>
