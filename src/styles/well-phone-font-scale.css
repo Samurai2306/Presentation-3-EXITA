@@ -1,0 +1,35 @@
+/* Font scale inside phone: zoom scales rem, em, px text and inline styles together */
+
+.well-phone-device__viewport.well-phone-font--min .well-phone-device__screen {
+  zoom: 0.875;
+}
+
+.well-phone-device__viewport.well-phone-font--normal .well-phone-device__screen {
+  zoom: 1;
+}
+
+.well-phone-device__viewport.well-phone-font--large .well-phone-device__screen {
+  zoom: 1.125;
+}
+
+.well-phone-device__viewport.well-phone-font--max .well-phone-device__screen {
+  zoom: 1.25;
+}
+
+/* Firefox fallback (older builds without zoom on flex children) */
+@supports not (zoom: 1) {
+  .well-phone-device__viewport.well-phone-font--min .well-phone-scroll {
+    transform: scale(0.875);
+    transform-origin: top center;
+  }
+
+  .well-phone-device__viewport.well-phone-font--large .well-phone-scroll {
+    transform: scale(1.125);
+    transform-origin: top center;
+  }
+
+  .well-phone-device__viewport.well-phone-font--max .well-phone-scroll {
+    transform: scale(1.25);
+    transform-origin: top center;
+  }
+}

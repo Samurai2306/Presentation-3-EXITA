@@ -58,11 +58,16 @@
 }
 
 .well-key--primary {
-  color: #fff;
-  background: linear-gradient(180deg, #4cb87a 0%, var(--well-primary) 42%, var(--well-primary-dark) 100%);
+  color: var(--well-on-primary);
+  background: linear-gradient(
+    180deg,
+    var(--well-primary-highlight) 0%,
+    var(--well-primary) 42%,
+    var(--well-primary-dark) 100%
+  );
   box-shadow:
-    0 4px 0 #1a4d32,
-    0 7px 16px rgba(37, 102, 66, 0.28),
+    0 4px 0 var(--well-primary-deep),
+    0 7px 16px var(--well-primary-glow),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
@@ -73,17 +78,22 @@
 .well-key--primary:active:not(:disabled) {
   transform: translateY(3px);
   box-shadow:
-    0 1px 0 #1a4d32,
+    0 1px 0 var(--well-primary-deep),
     inset 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .well-key--secondary {
   color: var(--well-text);
-  background: linear-gradient(180deg, #ffffff 0%, #eef6f1 45%, #dceee3 100%);
+  background: linear-gradient(
+    180deg,
+    var(--well-secondary-top) 0%,
+    var(--well-secondary-mid) 45%,
+    var(--well-secondary-bottom) 100%
+  );
   box-shadow:
-    0 4px 0 #9bb8a8,
-    0 6px 14px rgba(28, 41, 34, 0.12),
-    inset 0 1px 0 #fff;
+    0 4px 0 var(--well-secondary-shadow),
+    0 6px 14px var(--well-ink-muted),
+    inset 0 1px 0 var(--well-on-primary);
 }
 
 .well-key--secondary:hover:not(:disabled) {
@@ -93,7 +103,7 @@
 .well-key--secondary:active:not(:disabled) {
   transform: translateY(3px);
   box-shadow:
-    0 1px 0 #9bb8a8,
+    0 1px 0 var(--well-secondary-shadow),
     inset 0 2px 5px rgba(0, 0, 0, 0.06);
 }
 
@@ -101,7 +111,7 @@
   color: var(--well-primary-dark);
   background: var(--well-surface);
   border: 2px solid var(--well-border);
-  box-shadow: 0 3px 0 var(--well-border-strong), 0 4px 10px rgba(28, 41, 34, 0.06);
+  box-shadow: 0 3px 0 var(--well-border-strong), 0 4px 10px var(--well-ink-subtle);
 }
 
 .well-key--ghost:active:not(:disabled) {
@@ -171,7 +181,7 @@
   font-weight: 700;
   font-size: 0.78rem;
   cursor: pointer;
-  box-shadow: 0 3px 0 #c5ddd0, 0 4px 10px rgba(28, 41, 34, 0.06);
+  box-shadow: 0 3px 0 var(--well-elevated-shadow), 0 4px 10px var(--well-ink-subtle);
   transition:
     transform 0.07s ease,
     box-shadow 0.07s ease,
@@ -181,27 +191,32 @@
 
 .well-nav-key:hover {
   color: var(--well-text);
-  background: #fff;
+  background: var(--well-surface);
 }
 
 .well-nav-key:active {
   transform: translateY(2px);
-  box-shadow: 0 1px 0 #c5ddd0;
+  box-shadow: 0 1px 0 var(--well-elevated-shadow);
 }
 
 .well-nav-key.is-active {
-  color: #fff;
-  background: linear-gradient(180deg, #52c08a 0%, var(--well-primary) 50%, var(--well-primary-dark) 100%);
-  border-color: #2a6b45;
+  color: var(--well-on-primary);
+  background: linear-gradient(
+    180deg,
+    var(--well-primary-highlight) 0%,
+    var(--well-primary) 50%,
+    var(--well-primary-dark) 100%
+  );
+  border-color: var(--well-primary-edge);
   box-shadow:
-    0 4px 0 #1a4d32,
-    0 6px 14px rgba(37, 102, 66, 0.25),
+    0 4px 0 var(--well-primary-deep),
+    0 6px 14px var(--well-primary-glow),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .well-nav-key.is-active:active {
   transform: translateY(3px);
-  box-shadow: 0 1px 0 #1a4d32;
+  box-shadow: 0 1px 0 var(--well-primary-deep);
 }
 
 .well-nav-key:focus-visible {
@@ -276,12 +291,12 @@
   height: 2.25rem;
   border-radius: var(--well-radius-sm);
   border: 2px solid var(--well-border);
-  background: linear-gradient(180deg, #fff, #eef6f1);
+  background: linear-gradient(180deg, var(--well-secondary-top), var(--well-secondary-mid));
   cursor: pointer;
   font-size: 1rem;
   line-height: 1;
   color: var(--well-muted);
-  box-shadow: 0 2px 0 #c5ddd0;
+  box-shadow: 0 2px 0 var(--well-elevated-shadow);
 }
 
 .well-drawer-close:active {
@@ -505,7 +520,7 @@
   gap: 0.6rem;
   padding: 0.55rem 0.75rem;
   border-bottom: 1px solid var(--well-border);
-  background: linear-gradient(180deg, #fafcf9, #f0f7f3);
+  background: linear-gradient(180deg, var(--well-chrome-gradient-top), var(--well-chrome-gradient-bottom));
   border-radius: var(--well-radius-lg) var(--well-radius-lg) 0 0;
 }
 
@@ -528,7 +543,7 @@
   background: #fbbf24;
 }
 .well-window__dot--g {
-  background: #4ade80;
+  background: var(--well-accent);
 }
 
 .well-window__title {
@@ -719,7 +734,7 @@
 .well-meter__bar {
   height: 10px;
   border-radius: 999px;
-  background: #e3efe8;
+  background: var(--well-meter-track);
   border: 1px solid var(--well-border);
   overflow: hidden;
 }
@@ -1159,7 +1174,7 @@
   padding: 0.55rem 0.65rem;
   border-radius: var(--well-radius-md);
   border: 1px solid var(--well-border);
-  background: linear-gradient(180deg, #fafcf9, #f3f9f5);
+  background: linear-gradient(180deg, var(--well-chrome-gradient-top), var(--well-card-gradient-bottom));
 }
 
 .well-patient-upcoming__when {
@@ -1470,7 +1485,7 @@
   padding: 0.55rem 0.65rem;
   border-radius: var(--well-radius-md);
   border: 1px solid var(--well-border);
-  background: linear-gradient(180deg, #fafcf9, #f3f9f5);
+  background: linear-gradient(180deg, var(--well-chrome-gradient-top), var(--well-card-gradient-bottom));
 }
 
 .well-notif-list__item.is-high {

@@ -172,7 +172,9 @@ function SpectrumBars({ bias, voice }: { bias: number; voice: boolean }) {
           className="well-spectrum__bar"
           style={{
             height: b.h,
-            background: b.active ? 'linear-gradient(180deg, var(--well-accent), var(--well-primary-light))' : 'rgba(92, 111, 102, 0.22)',
+            background: b.active
+              ? 'linear-gradient(180deg, var(--well-accent), var(--well-primary-light))'
+              : 'color-mix(in srgb, var(--well-muted) 35%, transparent)',
           }}
         />
       ))}

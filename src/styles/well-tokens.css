@@ -22,6 +22,24 @@
   --well-danger: #c24141;
   --well-success: #2f7d52;
 
+  /* Derived UI tokens (themed per viewport in well-theme-presets.css) */
+  --well-on-primary: #ffffff;
+  --well-primary-highlight: #4cb87a;
+  --well-primary-edge: #2a6b45;
+  --well-primary-deep: #1a4d32;
+  --well-primary-glow: rgba(37, 102, 66, 0.28);
+  --well-secondary-top: #ffffff;
+  --well-secondary-mid: #eef6f1;
+  --well-secondary-bottom: #dceee3;
+  --well-secondary-shadow: #9bb8a8;
+  --well-elevated-shadow: #c5ddd0;
+  --well-chrome-gradient-top: #fafcf9;
+  --well-chrome-gradient-bottom: #f0f7f3;
+  --well-card-gradient-bottom: #f3f9f5;
+  --well-meter-track: #e3efe8;
+  --well-ink-subtle: rgba(28, 41, 34, 0.06);
+  --well-ink-muted: rgba(28, 41, 34, 0.12);
+
   --well-radius-sm: 10px;
   --well-radius-md: 14px;
   --well-radius-lg: 18px;

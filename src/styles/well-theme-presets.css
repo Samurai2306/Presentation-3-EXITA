@@ -1,5 +1,40 @@
 /* Theme overrides scoped to phone viewport (presentation chrome stays on :root green). */
 
+/* Derived tokens from palette — applies to every theme inside the phone */
+.well-phone-device__viewport {
+  --well-primary-highlight: color-mix(in srgb, var(--well-accent) 62%, white);
+  --well-primary-edge: color-mix(in srgb, var(--well-primary) 55%, var(--well-primary-dark));
+  --well-primary-deep: color-mix(in srgb, var(--well-primary-dark) 78%, black);
+  --well-primary-glow: color-mix(in srgb, var(--well-primary) 28%, transparent);
+  --well-secondary-top: #ffffff;
+  --well-secondary-mid: color-mix(in srgb, var(--well-bg) 35%, white);
+  --well-secondary-bottom: color-mix(in srgb, var(--well-primary-light) 55%, var(--well-border));
+  --well-secondary-shadow: color-mix(in srgb, var(--well-border-strong) 88%, var(--well-muted));
+  --well-elevated-shadow: color-mix(in srgb, var(--well-border) 92%, transparent);
+  --well-chrome-gradient-top: var(--well-bg-elevated);
+  --well-chrome-gradient-bottom: var(--well-bg);
+  --well-card-gradient-bottom: color-mix(in srgb, var(--well-bg) 82%, var(--well-primary-light));
+  --well-meter-track: color-mix(in srgb, var(--well-primary-light) 75%, var(--well-border));
+  --well-muted: color-mix(in srgb, var(--well-text) 52%, var(--well-bg));
+  --well-ink-subtle: color-mix(in srgb, var(--well-text) 6%, transparent);
+  --well-ink-muted: color-mix(in srgb, var(--well-text) 12%, transparent);
+  --well-shadow-sm: 0 1px 2px var(--well-ink-subtle);
+  --well-shadow-md: 0 4px 14px color-mix(in srgb, var(--well-text) 8%, transparent);
+}
+
+.well-phone-device__viewport[data-well-theme='green'] {
+  --well-bg: #f0f7f3;
+  --well-bg-elevated: #fafcf9;
+  --well-primary: #2f7d52;
+  --well-primary-dark: #256642;
+  --well-primary-light: #e8f5ed;
+  --well-accent: #3fa76f;
+  --well-accent-soft: #b8e3cc;
+  --well-border: #c8e0d2;
+  --well-border-strong: #9dc4ae;
+  --well-success: #2f7d52;
+}
+
 .well-phone-device__viewport[data-well-theme='blue'] {
   --well-bg: #eef6fa;
   --well-bg-elevated: #f8fbfd;
@@ -50,28 +85,4 @@
   --well-border: #e8cfc8;
   --well-border-strong: #d4a89e;
   --well-success: #b85c4a;
-}
-
-.well-phone-device__viewport.well-phone-font--min .well-phone-device__screen {
-  font-size: 87.5%;
-}
-
-.well-phone-device__viewport.well-phone-font--normal .well-phone-device__screen {
-  font-size: 100%;
-}
-
-.well-phone-device__viewport.well-phone-font--large .well-phone-device__screen {
-  font-size: 112.5%;
-}
-
-.well-phone-device__viewport.well-phone-font--large .well-phone-device__screen .well-title {
-  font-size: clamp(1.45rem, 3vw, 1.95rem);
-}
-
-.well-phone-device__viewport.well-phone-font--max .well-phone-device__screen {
-  font-size: 125%;
-}
-
-.well-phone-device__viewport.well-phone-font--max .well-phone-device__screen .well-title {
-  font-size: clamp(1.55rem, 3.2vw, 2.05rem);
 }

@@ -360,7 +360,7 @@ export default function YaZhivoyApp() {
                     </div>
                     {!gateCaregiverPin ? (
                       <>
-                        <h1 className="well-title" style={{ fontSize: '1.35rem', marginBottom: '0.25rem' }}>
+                        <h1 className="well-title" style={{ marginBottom: '0.25rem' }}>
                           Как вы заходите?
                         </h1>
                         <p className="well-role-gate__lead">
@@ -386,7 +386,7 @@ export default function YaZhivoyApp() {
                       </>
                     ) : (
                       <>
-                        <h1 className="well-title" style={{ fontSize: '1.35rem', marginBottom: '0.25rem' }}>
+                        <h1 className="well-title" style={{ marginBottom: '0.25rem' }}>
                           PIN опекуна (демо)
                         </h1>
                         <p className="well-role-gate__lead">{LABELS.caregiverPinHint}</p>
